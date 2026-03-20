@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O Novo Sempre Vem — Apresentação para Patrocinadores</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:   #0A0A0A;
+    --dark:    #111111;
+    --card:    #1C1C1C;
+    --card2:   #242424;
+    --gold:    #C8A86B;
+    --gold2:   #E8C97A;
+    --white:   #FFFFFF;
+    --gray:    #AAAAAA;
+    --lightbg: #F5F4F0;
+    --darktext:#1A1A1A;
+    --midgray: #666666;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--black);
+    color: var(--white);
+    scroll-behavior: smooth;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(200,168,107,0.18);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 52px;
+    gap: 1rem;
+  }
+  nav .logo {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  nav .slides-nav {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  nav .slides-nav a {
+    width: 27px; height: 27px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,168,107,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    color: var(--gray);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  nav .slides-nav a:hover,
+  nav .slides-nav a.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(200,168,107,0.12);
+  }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    white-space: nowrap;
+  }
+  .nav-hint {
+    font-size: 10px;
+    color: var(--midgray);
+    letter-spacing: 1px;
+  }
+
+  /* ─── SLIDES ─── */
+  .slide {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 6vw 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-dark  { background: var(--black); }
+  .slide-light { background: var(--lightbg); color: var(--darktext); }
+
+  /* gold top line */
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold2), transparent);
+  }
+
+  /* big background number */
+  .slide-num {
+    position: absolute;
+    top: 60px; right: 5vw;
+    font-size: 90px;
+    font-weight: 700;
+    color: rgba(200,168,107,0.05);
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--white);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.6rem;
+  }
+  .slide-light h1,
+  .slide-light h2 { color: var(--darktext); }
+
+  /* left gold bar (cover + closing) */
+  .left-bar {
+    position: absolute;
+    left: 6vw; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 45%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    border-radius: 2px;
+  }
+
+  /* ─── GRID HELPERS ─── */
+  .cards-grid { display: grid; gap: 1.2rem; }
+  .cards-3 { grid-template-columns: repeat(3, 1fr); }
+  .cards-4 { grid-template-columns: repeat(4, 1fr); }
+  .cards-5 { grid-template-columns: repeat(5, 1fr); }
+  .cards-2 { grid-template-columns: repeat(2, 1fr); }
+
+  .two-col    { display: grid; grid-template-columns: 1fr 1fr;    gap: 3rem; align-items: start; }
+  .two-col-60 { display: grid; grid-template-columns: 58% 40%; gap: 3rem; align-items: start; }
+
+  /* ─── CARDS ─── */
+  .card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 4px;
+    padding: 1.6rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); border-color: rgba(200,168,107,0.3); }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+  }
+  .card-light {
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  .card-light:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.12); transform: translateY(-2px); }
+  .card-light::before { background: var(--gold); }
+  .card-accent { background: var(--gold); color: var(--darktext); }
+  .card-accent::before { display: none; }
+
+  .card-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+  .card-light h3 { color: var(--darktext); }
+  .card-accent h3 { color: var(--darktext); }
+  .card p { font-size: 0.82rem; color: var(--gray); line-height: 1.6; }
+  .card-light p { color: var(--midgray); }
+  .card-accent p { color: rgba(26,26,26,0.75); }
+
+  /* ─── BIG STATS BAR ─── */
+  .stats-bar {
+    background: #161616;
+    border: 1px solid rgba(200,168,107,0.15);
+    border-radius: 6px;
+    padding: 1.4rem 2rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  .stat-block { flex: 1; text-align: center; padding: 0.6rem 1rem; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900;
+    color: var(--gold);
+    display: block; margin-bottom: 0.3rem;
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.72rem; color: var(--gray); letter-spacing: 1px; font-weight: 500; }
+  .stat-divider { width: 1px; min-height: 50px; background: rgba(255,255,255,0.08); align-self: stretch; }
+
+  /* ─── PRESS CARDS ─── */
+  .press-card {
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1.4rem;
+    display: flex; flex-direction: column; gap: 0.4rem;
+    transition: transform 0.2s;
+  }
+  .press-card:hover { transform: translateY(-2px); }
+  .press-card .outlet { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--white); }
+  .press-card .type   { font-size: 0.75rem; color: var(--gray); }
+  .press-card .value  { font-size: 1rem; font-weight: 600; color: var(--gold); margin-top: 0.3rem; }
+
+  /* ─── HIGHLIGHT BOXES ─── */
+  .highlight-box {
+    background: rgba(200,168,107,0.08);
+    border: 1px solid rgba(200,168,107,0.25);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1.2rem 1.4rem;
+    margin-top: 1.4rem;
+  }
+  .highlight-box p { font-size: 0.9rem; color: var(--white); line-height: 1.7; }
+  .highlight-box-accent {
+    background: var(--gold);
+    border-radius: 4px;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1rem;
+  }
+  .highlight-box-accent p { color: var(--darktext); font-weight: 600; font-size: 0.9rem; line-height: 1.5; }
+
+  /* ─── BENEFIT LIST ─── */
+  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .benefit-list li {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.83rem; color: var(--midgray);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .benefit-list li::before { content: '—'; color: var(--gold); font-weight: 600; flex-shrink: 0; }
+
+  /* ─── STAR LIST ─── */
+  .star-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .star-list li {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.83rem; color: var(--gray); line-height: 1.5;
+  }
+  .star-list li::before { content: '★'; color: var(--gold); flex-shrink: 0; }
+
+  /* ─── ARTIST CARDS ─── */
+  .artist-card {
+    background: var(--card2);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.25s;
+  }
+  .artist-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+  }
+  .artist-card:hover { transform: translateY(-3px); border-color: rgba(200,168,107,0.35); }
+  .artist-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #1a1a1a;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .artist-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    position: absolute; top: 0; left: 0;
+  }
+  .play-btn {
+    position: absolute;
+    width: 46px; height: 46px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    color: var(--darktext);
+    box-shadow: 0 4px 20px rgba(200,168,107,0.5);
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    z-index: 2;
+  }
+  .artist-card:hover .play-btn { transform: scale(1.12); box-shadow: 0 6px 25px rgba(200,168,107,0.7); }
+  .artist-info  { padding: 0.9rem; }
+  .artist-name  { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 0.2rem; }
+  .artist-genre { font-size: 0.7rem; color: var(--gold); margin-bottom: 0.4rem; font-weight: 500; }
+  .artist-note  { font-size: 0.72rem; color: var(--gray); line-height: 1.5; }
+
+  /* ─── VIDEO CTA BUTTON ─── */
+  .video-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--gold);
+    color: var(--darktext);
+    font-weight: 600; font-size: 0.85rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-top: 1rem;
+    letter-spacing: 0.3px;
+  }
+  .video-cta:hover { background: var(--gold2); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,168,107,0.35); }
+
+  /* ─── CONTACTS ─── */
+  .contact-item {
+    display: flex; align-items: center; gap: 0.8rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.95rem;
+    color: var(--white);
+  }
+  .contact-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; }
+  .contact-item a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+  .contact-item a:hover { color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  .slide-footer {
+    position: absolute;
+    bottom: 1.5rem; left: 6vw; right: 6vw;
+    font-size: 0.7rem; color: var(--midgray);
+    letter-spacing: 1px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* ─── GOLD HELPERS ─── */
+  .gold      { color: var(--gold); }
+  .gold-bold { color: var(--gold); font-weight: 600; }
+
+  /* ─── EDIT MODE ─── */
+  .edit-toggle {
+    background: rgba(200,168,107,0.12);
+    border: 1px solid rgba(200,168,107,0.35);
+    color: var(--gold);
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 2px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .edit-toggle:hover   { background: rgba(200,168,107,0.22); }
+  .edit-toggle.active  { background: var(--gold); color: var(--darktext); }
+
+  [contenteditable] { outline: none; border-radius: 2px; transition: background 0.15s; }
+
+  body.edit-mode [contenteditable="true"]:hover { background: rgba(200,168,107,0.07); cursor: text; }
+  body.edit-mode [contenteditable="true"]:focus { background: rgba(200,168,107,0.1); outline: 1px dashed rgba(200,168,107,0.5); }
+
+  /* url fields */
+  .url-field {
+    display: none;
+    margin-top: 6px;
+  }
+  body.edit-mode .url-field {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .url-field label { font-size: 9px; color: var(--gold); letter-spacing: 1px; white-space: nowrap; }
+  .url-field input {
+    flex: 1;
+    background: rgba(200,168,107,0.08);
+    border: 1px solid rgba(200,168,107,0.3);
+    border-radius: 3px;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: var(--gray);
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+  }
+  .url-field input:focus { border-color: var(--gold); color: var(--white); }
+
+  .edit-toast {
+    display: none;
+    position: fixed;
+    bottom: 1.8rem; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--darktext);
+    font-size: 11px; font-weight: 600;
+    padding: 9px 22px;
+    border-radius: 20px;
+    z-index: 300;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 20px rgba(200,168,107,0.4);
+    pointer-events: none;
+  }
+  .edit-toast.show { display: block; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .slide > * { animation: fadeUp 0.45s ease both; }
+  .slide > *:nth-child(2) { animation-delay: 0.07s; }
+  .slide > *:nth-child(3) { animation-delay: 0.14s; }
+  .slide > *:nth-child(4) { animation-delay: 0.21s; }
+  .slide > *:nth-child(5) { animation-delay: 0.28s; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="logo">Trama · O Novo Sempre Vem</div>
+  <div class="slides-nav">
+    <a href="#s1">1</a><a href="#s2">2</a><a href="#s3">3</a>
+    <a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a>
+    <a href="#s7">7</a><a href="#s8">8</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-hint" id="editHint">modo leitura</span>
+    <button class="edit-toggle" id="editBtn" onclick="toggleEdit()">✏ EDITAR</button>
+    <button class="edit-toggle" style="opacity:0.5;font-size:9px;" onclick="resetAll()">↺ RESET</button>
+  </div>
+</nav>
+
+<div class="edit-toast" id="editToast">MODO EDIÇÃO — clique em qualquer texto para editar</div>
+
+<!-- ══════════════════════════════
+     SLIDE 1 — CAPA
+══════════════════════════════ -->
+<section class="slide slide-dark" id="s1">
+  <div class="left-bar"></div>
+  <div class="slide-num">01</div>
+
+  <div style="padding-left: 2.5rem; max-width: 720px;">
+    <div class="section-label">Apresentação para Patrocinadores</div>
+
+    <h1 contenteditable="false" style="margin-bottom: 1.2rem;">
+      O NOVO<br>SEMPRE VEM
+    </h1>
+
+    <p contenteditable="false" style="font-size: 1rem; color: var(--gray); margin-bottom: 2rem; line-height: 1.8;">
+      Um programa que registra e divulga a cena contemporânea<br>
+      da Música Popular Brasileira — curadoria humana,<br>
+      produção de excelência, alcance nacional.
+    </p>
+
+    <a id="cta-promo" href="https://youtu.be/tkYDFVuUf2M?si=MB17frlbQ3uyPfm0" target="_blank" class="video-cta">
+      ▶ &nbsp;Assistir ao vídeo promo
+    </a>
+    <div class="url-field">
+      <label>LINK VÍDEO PROMO</label>
+      <input type="text" value="https://youtu.be/tkYDFVuUf2M?si=MB17frlbQ3uyPfm0" oninput="updateLink('cta-promo', this.value)" placeholder="https://...">
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span contenteditable="false">TRAMA</span>
+    <span contenteditable="false">Projeto aprovado na Ancine · SALIC 25-1226</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDE 2 — SOBRE A TRAMA
+══════════════════════════════ -->
+<section class="slide slide-dark" id="s2">
+  <div class="slide-num">02</div>
+  <div class="section-label">A Empresa</div>
+  <h2 contenteditable="false">Sobre a Trama</h2>
+
+  <div class="two-col-60">
+    <div>
+      <p contenteditable="false" style="font-size: 0.95rem; color: var(--gray); line-height: 2;">
+        <span class="gold-bold">Missão:</span> a música brasileira — sua inovação, renovação e perpetuação.<br><br>
+        <span class="gold-bold">Fundada em 1973</span> por Elis Regina para produzir o Circuito Universitário e seus próprios shows.<br><br>
+        <span class="gold-bold">Reativada em 1998</span> por João Marcello Bôscoli e André Szajman, tornando-se referência nacional na cena independente.<br><br>
+        <span class="gold-bold">Hoje:</span> produção de O Novo Sempre Vem e projeto de <span class="gold" style="font-weight:700;">gravações inéditas de Elis Regina</span> em andamento — iniciativa que reafirma o compromisso da Trama com a memória e a grandeza da música brasileira.
+      </p>
+    </div>
+
+    <div>
+      <div class="card" style="border-color: rgba(200,168,107,0.3);">
+        <p class="section-label" style="margin-bottom: 1rem;">Destaques</p>
+        <ul class="star-list" contenteditable="false">
+          <li>Referência nacional na cena independente</li>
+          <li>Parceira da TV Cultura há mais de uma temporada</li>
+          <li>5 décadas de história musical brasileira</li>
+          <li>Projeto inédito Elis Regina em andamento</li>
+          <li>R$ 5 milhões aprovados na Ancine</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDE 3 — O PROGRAMA
+══════════════════════════════ -->
+<section class="slide slide-light" id="s3">
+  <div class="slide-num" style="color: rgba(200,168,107,0.07);">03</div>
+  <div class="section-label">O Programa</div>
+  <h2 contenteditable="false">O Novo Sempre Vem</h2>
+
+  <div class="cards-grid cards-3" style="margin-bottom: 2rem;">
+    <div class="card card-light">
+      <div class="card-icon">🎙</div>
+      <h3>Performances ao vivo</h3>
+      <p contenteditable="false">Sessões de estúdio em alta fidelidade sonora, filmadas em 4K com câmera imersiva. Sem entrevistas — a música como único eixo.</p>
+    </div>
+    <div class="card card-light">
+      <div class="card-icon">🎬</div>
+      <h3>Produção de excelência</h3>
+      <p contenteditable="false">Estúdio Trama NaCena: 120m², pé-direito de 7m. Áudio multicanal. Direção geral de Luciano Cury. Curadoria de João Marcello Bôscoli.</p>
+    </div>
+    <div class="card card-light">
+      <div class="card-icon">📡</div>
+      <h3>Distribuição multiplataforma</h3>
+      <p contenteditable="false">TV Cultura, Cultura Play, Trama TV no YouTube e rádio Nova Brasil. 200 episódios de 26 minutos previstos na temporada.</p>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <a id="cta-promo2" href="https://youtu.be/tkYDFVuUf2M?si=MB17frlbQ3uyPfm0" target="_blank" class="video-cta" style="background: var(--darktext); color: var(--gold); border: 1px solid var(--gold);">
+      ▶ &nbsp;Ver vídeo promo do programa
+    </a>
+    <div class="url-field" style="justify-content: center; margin-top: 8px;">
+      <label>LINK VÍDEO PROMO</label>
+      <input type="text" value="https://youtu.be/tkYDFVuUf2M?si=MB17frlbQ3uyPfm0" oninput="updateLink('cta-promo2', this.value)" placeholder="https://..." style="max-width:300px;">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDE 4 — ARTISTAS
+══════════════════════════════ -->
+<section class="slide slide-dark" id="s4">
+  <div class="slide-num">04</div>
+  <div class="section-label">Quem já gravou</div>
+  <h2 contenteditable="false" style="margin-bottom: 1.4rem;">Uma curadoria que representa<br>o Brasil musical de hoje</h2>
+
+  <div class="cards-grid cards-5" style="margin-bottom: 1rem;">
+
+    <!-- FITTI -->
+    <div class="artist-card">
+      <div class="artist-thumb">
+        <img src="https://img.youtube.com/vi/YOUR_FITTI_ID/mqdefault.jpg" alt="Fitti" onerror="this.style.display='none'">
+        <span style="position:relative;z-index:1;">🎵</span>
+        <a id="link-fitti" href="https://youtu.be/EB6xRcdka54?si=DnizFm4gp6iUeebw" target="_blank" class="play-btn" title="Assistir episódio de Fitti">▶</a>
+      </div>
+      <div class="artist-info">
+        <div class="artist-name" contenteditable="false">Fitti</div>
+        <div class="artist-genre" contenteditable="false">Indie / Pop Alternativo</div>
+        <div class="artist-note" contenteditable="false">Indicado ao Grammy Latino 2025 — álbum Transespacial. Nascido nas ruas de Recife.</div>
+      </div>
+      <div class="url-field" style="padding: 0 0.9rem 0.7rem;">
+        <label>LINK EP.</label>
+        <input type="text" value="https://youtu.be/EB6xRcdka54?si=DnizFm4gp6iUeebw" oninput="updateLink('link-fitti', this.value)" placeholder="https://youtube.com/...">
+      </div>
+    </div>
+
+    <!-- CYNTHIA LUZ -->
+    <div class="artist-card">
+      <div class="artist-thumb">
+        <img src="https://img.youtube.com/vi/YOUR_CYNTHIA_ID/mqdefault.jpg" alt="Cynthia Luz" onerror="this.style.display='none'">
+        <span style="position:relative;z-index:1;">🎵</span>
+        <a id="link-cynthia" href="https://www.youtube.com/watch?v=OOAl0r1o1ZI&t=59s" target="_blank" class="play-btn" title="Assistir episódio de Cynthia Luz">▶</a>
+      </div>
+      <div class="artist-info">
+        <div class="artist-name" contenteditable="false">Cynthia Luz</div>
+        <div class="artist-genre" contenteditable="false">Hip Hop / Reggae / MPB</div>
+        <div class="artist-note" contenteditable="false">Rock in Rio, The Town. Parcerias com Xamã, Projota e Gabriel O Pensador.</div>
+      </div>
+      <div class="url-field" style="padding: 0 0.9rem 0.7rem;">
+        <label>LINK EP.</label>
+        <input type="text" value="https://www.youtube.com/watch?v=OOAl0r1o1ZI&t=59s" oninput="updateLink('link-cynthia', this.value)" placeholder="https://youtube.com/...">
+      </div>
+    </div>
+
+    <!-- FABIO BRAZZA -->
+    <div class="artist-card">
+      <div class="artist-thumb">
+        <img src="https://img.youtube.com/vi/YOUR_BRAZZA_ID/mqdefault.jpg" alt="Fabio Brazza" onerror="this.style.display='none'">
+        <span style="position:relative;z-index:1;">🎵</span>
+        <a id="link-brazza" href="https://youtu.be/U5IG2Adg-70?si=Km_llmLmyfCNkMuI" target="_blank" class="play-btn" title="Assistir episódio de Fabio Brazza">▶</a>
+      </div>
+      <div class="artist-info">
+        <div class="artist-name" contenteditable="false">Fabio Brazza</div>
+        <div class="artist-genre" contenteditable="false">Rap / Samba</div>
+        <div class="artist-note" contenteditable="false">9 álbuns. Composições gravadas por Diogo Nogueira, Edi Rock e Atitude 67.</div>
+      </div>
+      <div class="url-field" style="padding: 0 0.9rem 0.7rem;">
+        <label>LINK EP.</label>
+        <input type="text" value="https://youtu.be/U5IG2Adg-70?si=Km_llmLmyfCNkMuI" oninput="updateLink('link-brazza', this.value)" placeholder="https://youtube.com/...">
+      </div>
+    </div>
+
+    <!-- PEDRO EMÍLIO -->
+    <div class="artist-card">
+      <div class="artist-thumb">
+        <img src="https://img.youtube.com/vi/YOUR_PEDRO_ID/mqdefault.jpg" alt="Pedro Emílio" onerror="this.style.display='none'">
+        <span style="position:relative;z-index:1;">🎵</span>
+        <a id="link-pedro" href="https://youtu.be/YXk7KoVIlQQ?si=nue9Y5zlsxqGNJBZ" target="_blank" class="play-btn" title="Assistir episódio de Pedro Emílio">▶</a>
+      </div>
+      <div class="artist-info">
+        <div class="artist-name" contenteditable="false">Pedro Emílio</div>
+        <div class="artist-genre" contenteditable="false">R&B Retrofuturista</div>
+        <div class="artist-note" contenteditable="false">Indicado ao Grammy Latino — Melhor Engenharia de Gravação.</div>
+      </div>
+      <div class="url-field" style="padding: 0 0.9rem 0.7rem;">
+        <label>LINK EP.</label>
+        <input type="text" value="https://youtu.be/YXk7KoVIlQQ?si=nue9Y5zlsxqGNJBZ" oninput="updateLink('link-pedro', this.value)" placeholder="https://youtube.com/...">
+      </div>
+    </div>
+
+    <!-- YOÙN -->
+    <div class="artist-card">
+      <div class="artist-thumb">
+        <img src="https://img.youtube.com/vi/YOUR_YOUN_ID/mqdefault.jpg" alt="YOÙN" onerror="this.style.display='none'">
+        <span style="position:relative;z-index:1;">🎵</span>
+        <a id="link-youn" href="https://youtu.be/xjfEWuAcIk8?si=5cOd_RH8aJXFjctl" target="_blank" class="play-btn" title="Assistir episódio de YOÙN">▶</a>
+      </div>
+      <div class="artist-info">
+        <div class="artist-name" contenteditable="false">YOÙN</div>
+        <div class="artist-genre" contenteditable="false">R&B / Gospel / Jazz / Rap</div>
+        <div class="artist-note" contenteditable="false">Duo da Baixada Fluminense. Parcerias com Gilsons, Tuyo e Luccas Carlos.</div>
+      </div>
+      <div class="url-field" style="padding: 0 0.9rem 0.7rem;">
+        <label>LINK EP.</label>
+        <input type="text" value="https://youtu.be/xjfEWuAcIk8?si=5cOd_RH8aJXFjctl" oninput="updateLink('link-youn', this.value)" placeholder="https://youtube.com/...">
+      </div>
+    </div>
+
+  </div>
+
+  <p style="font-size: 0.75rem; color: var(--midgray); text-align: center; font-style: italic;" contenteditable="false">
+    + Tuyo, Vanessa Moreno, Zudizilla, Siba Puri, João Sabiá, Leandro Valentin e mais 20 artistas na 1ª temporada
+  </p>
+
+  <div style="text-align: center; margin-top: 1rem;">
+    <a id="cta-tramachannel" href="https://www.youtube.com/@TramaTV" target="_blank" class="video-cta">
+      ▶ &nbsp;Ver todos os episódios — canal Trama TV
+    </a>
+    <div class="url-field" style="justify-content: center; margin-top: 8px;">
+      <label>LINK CANAL</label>
+      <input type="text" value="https://www.youtube.com/@TramaTV" oninput="updateLink('cta-tramachannel', this.value)" placeholder="https://..." style="max-width:300px;">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDE 5 — NÚMEROS
+══════════════════════════════ -->
+<section class="slide slide-dark" id="s5">
+  <div class="slide-num">05</div>
+  <div class="section-label">Impacto e Valoração · Estudo Ponto MAP (jan–nov 2025)</div>
+  <h2 contenteditable="false" style="margin-bottom: 1.4rem;">Números da 1ª Temporada</h2>
+
+  <div class="stats-bar">
+    <div class="stat-block">
+      <span class="stat-number" contenteditable="false">284</span>
+      <span class="stat-label">publicações totais</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <span class="stat-number" contenteditable="false">4.300</span>
+      <span class="stat-label">pontos de impacto</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <span class="stat-number" contenteditable="false">R$ 22,2M</span>
+      <span class="stat-label">em valoração equivalente</span>
+    </div>
+  </div>
+
+  <div class="cards-grid cards-4">
+    <div class="card">
+      <div class="card-icon">📺</div>
+      <h3>TV Cultura</h3>
+      <p contenteditable="false">14 veiculações<br>140K audiência / episódio<br><span class="gold" style="font-weight:600;">R$ 2,5M valorado</span></p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📻</div>
+      <h3>Nova Brasil</h3>
+      <p contenteditable="false">35 veiculações<br>1,4M pessoas potencialmente cobertas<br><span class="gold" style="font-weight:600;">R$ 4,3M valorado</span></p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📰</div>
+      <h3>Imprensa</h3>
+      <p contenteditable="false">122 publicações<br>14,9M pessoas impactadas<br><span class="gold" style="font-weight:600;">R$ 9,6M valorado</span></p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h3>Rede Própria</h3>
+      <p contenteditable="false">113 publicações<br>1,4M visualizações<br><span class="gold" style="font-weight:600;">R$ 5,6M valorado</span></p>
+    </div>
+  </div>
+
+  <p style="font-size: 0.7rem; color: var(--midgray); margin-top: 1.2rem; font-style: italic;" contenteditable="false">
+    * Estudo realizado pela Ponto MAP. Dados parciais de 2025 — tendência de crescimento contínuo. 1 ponto de impacto = R$ 5.136,40 na tabela cheia da publicidade.
+  </p>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDE 6 — IMPRENSA
+══════════════════════════════ -->
+<section class="slide slide-dark" id="s6">
+  <div class="slide-num">06</div>
+  <div class="section-label">Repercussão na Imprensa</div>
+  <h2 contenteditable="false">Presença qualificada nos<br>maiores veículos do país</h2>
+
+  <div class="cards-grid cards-2">
+    <div class="press-card">
+      <div class="outlet" contenteditable="false">Billboard Brasil</div>
+      <div class="type" contenteditable="false">Impresso + Web · Perfil de página inteira</div>
+    </div>
+    <div class="press-card">
+      <div class="outlet" contenteditable="false">Harper's Bazaar</div>
+      <div class="type" contenteditable="false">Web · Matéria sobre a nova cena musical brasileira</div>
+    </div>
+    <div class="press-card">
+      <div class="outlet" contenteditable="false">Folha de S.Paulo</div>
+      <div class="type" contenteditable="false">Impresso + Web · Coluna Mônica Bergamo</div>
+    </div>
+    <div class="press-card">
+      <div class="outlet" contenteditable="false">TOCA · Rádio Cultura</div>
+      <div class="type" contenteditable="false">Portal + Instagram</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <p contenteditable="false">Mensagem captada organicamente pela imprensa: <strong>curadoria de excelência, pluralidade musical e tecnologia de ponta a serviço do artista</strong> — em um formato que cresce no Brasil.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDE 7 — INVESTIMENTO
+══════════════════════════════ -->
+<section class="slide slide-light" id="s7">
+  <div class="slide-num" style="color: rgba(200,168,107,0.07);">07</div>
+  <div class="section-label">Patrocínio via Lei do Audiovisual</div>
+  <h2 contenteditable="false">Investir sem custo adicional ao caixa</h2>
+
+  <div class="two-col">
+    <div>
+      <div class="card" style="background: var(--darktext);">
+        <p class="section-label" style="margin-bottom: 0.6rem;">Orçamento Aprovado</p>
+        <p contenteditable="false" style="font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:900; color:var(--gold); line-height:1; margin-bottom:0.8rem;">R$ 5.000.000</p>
+        <p contenteditable="false" style="font-size:0.85rem; color:var(--gray); line-height:1.8;">
+          Art. 1ºA — Lei do Audiovisual.<br>
+          Empresas do lucro real podem aportar<br>
+          até <strong style="color:var(--white);">4% do IR devido</strong> como patrocínio.
+        </p>
+        <div class="highlight-box-accent">
+          <p contenteditable="false">Aportar no projeto = redirecionar IR que já seria pago. Custo zero adicional ao caixa.</p>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card card-light">
+        <p class="section-label" style="color:var(--gold); margin-bottom:0.6rem;">Cotas Flexíveis</p>
+        <p contenteditable="false" style="font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--darktext); margin-bottom:0.8rem; line-height:1.3;">
+          A captação não precisa ser integral com uma única empresa.
+        </p>
+        <p contenteditable="false" style="font-size:0.85rem; color:var(--midgray); line-height:1.7; margin-bottom:1rem;">
+          Negociamos cotas adequadas às possibilidades de cada apoiador. O que importa é fazer parte deste projeto.
+        </p>
+        <p style="font-size:0.8rem; font-weight:600; color:var(--gold); margin-bottom:0.5rem; letter-spacing:1px;">CONTRAPARTIDAS POSSÍVEIS</p>
+        <ul class="benefit-list" contenteditable="false">
+          <li>Logomarca em todos os episódios nos canais da Trama</li>
+          <li>Citação nos créditos do programa</li>
+          <li>Presença em teasers e trailers de divulgação</li>
+          <li>Menção em releases para imprensa</li>
+          <li>Convites para gravações no estúdio</li>
+          <li>Visitas guiadas ao Trama NaCena</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     SLIDE 8 — ENCERRAMENTO
+══════════════════════════════ -->
+<section class="slide slide-dark" id="s8">
+  <div class="left-bar"></div>
+  <div class="slide-num">08</div>
+
+  <div style="padding-left: 2.5rem; max-width: 680px;">
+    <div class="section-label">Contato</div>
+
+    <h1 contenteditable="false" style="margin-bottom: 1.8rem; font-size: clamp(2rem, 4vw, 3.5rem);">
+      Vamos fazer<br>essa música juntos?
+    </h1>
+
+    <div class="contact-item">
+  <span class="contact-icon">✉</span>
+  <span contenteditable="false">
+    <a href="mailto:verena@trama.com.br">verena@trama.com.br</a>
+  </span>
+</div>
+      <div class="contact-item">
+  <span class="contact-icon">✉</span>
+  <span contenteditable="false">
+    <a href="mailto:andre@trama.com.br">andre@trama.com.br</a>
+  </span>
+</div>
+      <div class="contact-item">
+  <span class="contact-icon">✉</span>
+  <span contenteditable="false">
+    <a href="mailto:pcamossa@piraporano.com">pcamossa@piraporano.com</a>
+  </span>
+</div>
+
+    <a id="cta-closing" href="https://www.youtube.com/@TramaTV" target="_blank" class="video-cta">
+      ▶ &nbsp;Canal Trama TV no YouTube
+    </a>
+    <div class="url-field" style="margin-top: 8px;">
+      <label>LINK CANAL</label>
+      <input type="text" value="https://www.youtube.com/@TramaTV" oninput="updateLink('cta-closing', this.value)" placeholder="https://...">
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span>TRAMA</span>
+    <span>SALIC 25-1226 · Ancine · Art. 1ºA Lei do Audiovisual</span>
+  </div>
+</section>
+
+<script>
+  const STORAGE_KEY = 'onsv_v1';
+
+  function loadSaved() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      if (data.texts) {
+        Object.entries(data.texts).forEach(([key, html]) => {
+          const el = document.querySelector('[data-sk="' + key + '"]') || document.getElementById(key);
+          if (el) el.innerHTML = html;
+        });
+      }
+      if (data.links) {
+        Object.entries(data.links).forEach(([id, href]) => {
+          const el = document.getElementById(id);
+          if (el) { el.href = href; }
+          const inp = document.querySelector('input[data-lt="' + id + '"]');
+          if (inp) inp.value = href;
+        });
+      }
+    } catch(e) {}
+  }
+
+  function saveAll(silent) {
+    try {
+      const data = { texts: {}, links: {} };
+      document.querySelectorAll('[contenteditable]').forEach(el => {
+        const key = el.getAttribute('data-sk') || el.id;
+        if (key) data.texts[key] = el.innerHTML;
+      });
+      ['cta-promo','cta-promo2','cta-tramachannel','cta-closing',
+       'link-fitti','link-cynthia','link-brazza','link-pedro','link-youn'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) data.links[id] = el.href;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      if (!silent) showToast('Salvo!');
+    } catch(e) {}
+  }
+
+  let saveTimer;
+  function scheduleAutoSave() { clearTimeout(saveTimer); saveTimer = setTimeout(() => saveAll(true), 1000); }
+
+  function showToast(msg) {
+    const t = document.getElementById('editToast');
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  }
+
+  function resetAll() {
+    if (confirm('Apagar todas as edicoes e voltar ao original?')) {
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+  }
+
+  const editBtn = document.getElementById('editBtn');
+  const editHint = document.getElementById('editHint');
+  let editing = false;
+
+  function toggleEdit() {
+    editing = !editing;
+    document.body.classList.toggle('edit-mode', editing);
+    document.querySelectorAll('[contenteditable]').forEach(el => {
+      el.contentEditable = editing ? 'true' : 'false';
+    });
+    if (editing) {
+      editBtn.textContent = 'SALVAR';
+      editBtn.classList.add('active');
+      editHint.textContent = 'modo edicao';
+      showToast('Edicao ativa - salvo automaticamente');
+      document.querySelectorAll('[contenteditable=true]').forEach(el => {
+        el.addEventListener('input', scheduleAutoSave);
+      });
+    } else {
+      saveAll(false);
+      editBtn.textContent = 'EDITAR';
+      editBtn.classList.remove('active');
+      editHint.textContent = 'modo leitura';
+    }
+  }
+
+  function updateLink(id, val) {
+    const el = document.getElementById(id);
+    if (el && val.trim()) { el.href = val.trim(); scheduleAutoSave(); }
+  }
+
+  document.querySelectorAll('a[href^=#]').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' });
+    });
+  });
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.slides-nav a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => obs.observe(s));
+
+  document.addEventListener('DOMContentLoaded', loadSaved);
+</script>
+</body>
+</html>
