@@ -375,22 +375,8 @@
   .gold-bold { color: var(--gold); font-weight: 600; }
 
   /* ─── EDIT MODE ─── */
-  .edit-toggle {
-    background: rgba(200,168,107,0.12);
-    border: 1px solid rgba(200,168,107,0.35);
-    color: var(--gold);
-    font-size: 10px; font-weight: 600;
-    letter-spacing: 2px;
-    padding: 5px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
-    transition: all 0.2s;
-  }
-  .edit-toggle:hover   { background: rgba(200,168,107,0.22); }
-  .edit-toggle.active  { background: var(--gold); color: var(--darktext); }
 
-  [contenteditable] { outline: none; border-radius: 2px; transition: background 0.15s; }
+  
 
   body.edit-mode [contenteditable="true"]:hover { background: rgba(200,168,107,0.07); cursor: text; }
   body.edit-mode [contenteditable="true"]:focus { background: rgba(200,168,107,0.1); outline: 1px dashed rgba(200,168,107,0.5); }
@@ -419,23 +405,6 @@
   }
   .url-field input:focus { border-color: var(--gold); color: var(--white); }
 
-  .edit-toast {
-    display: none;
-    position: fixed;
-    bottom: 1.8rem; left: 50%;
-    transform: translateX(-50%);
-    background: var(--gold);
-    color: var(--darktext);
-    font-size: 11px; font-weight: 600;
-    padding: 9px 22px;
-    border-radius: 20px;
-    z-index: 300;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 20px rgba(200,168,107,0.4);
-    pointer-events: none;
-  }
-  .edit-toast.show { display: block; }
-
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -446,9 +415,277 @@
   .slide > *:nth-child(3) { animation-delay: 0.14s; }
   .slide > *:nth-child(4) { animation-delay: 0.21s; }
   .slide > *:nth-child(5) { animation-delay: 0.28s; }
+
+  /* ═══════════════════════════════════════
+     MOBILE — tablets (≤768px) and phones (≤480px)
+  ═══════════════════════════════════════ */
+
+  @media (max-width: 768px) {
+
+    /* NAV */
+    nav {
+      padding: 0 1.2rem;
+      height: 48px;
+    }
+    nav .logo { font-size: 9px; letter-spacing: 3px; }
+    nav .slides-nav { display: none; } /* hide dot nav on small screens */
+
+    /* SLIDES */
+    .slide {
+      min-height: 100svh;
+      padding: 72px 1.4rem 50px;
+      justify-content: flex-start;
+      padding-top: 80px;
+    }
+
+    /* TYPOGRAPHY */
+    h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 6vw, 2rem); margin-bottom: 1.2rem; }
+
+    /* WATERMARK — shrink so it doesn't crowd content */
+    .slide-num { font-size: 60px; top: 48px; right: 1.4rem; }
+
+    /* LEFT BAR — shorten */
+    .left-bar { height: 35%; }
+
+    /* COVER — s1 */
+    #s1 { justify-content: center; }
+    #s1 .s1-content, #s8 > div { padding-left: 1.2rem; }
+
+    /* GRIDS — collapse to single column */
+    .cards-3,
+    .cards-4,
+    .cards-5,
+    .cards-2,
+    .two-col,
+    .two-col-60 {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    /* ARTIST CARDS — 2 columns on tablet */
+    .cards-5 { grid-template-columns: repeat(2, 1fr); }
+
+    /* STATS BAR — stack vertically */
+    .stats-bar {
+      flex-direction: column;
+      gap: 0.8rem;
+      padding: 1.2rem;
+    }
+    .stat-divider {
+      width: 100%;
+      height: 1px;
+      min-height: unset;
+    }
+
+    /* PRESS CARDS — single column */
+    .cards-grid.cards-2 { grid-template-columns: 1fr; }
+
+    /* SLIDE FOOTER */
+    .slide-footer {
+      flex-direction: column;
+      gap: 0.3rem;
+      text-align: center;
+      bottom: 1rem;
+    }
+
+    /* VIDEO CTA */
+    .video-cta {
+      width: 100%;
+      justify-content: center;
+      font-size: 0.8rem;
+    }
+
+    /* BENEFIT LIST text */
+    .benefit-list li { font-size: 0.8rem; }
+
+    /* INVESTMENT SLIDE — cards */
+    #s7 .card[style*="background: var(--darktext)"],
+    #s7 .card.card-light {
+      padding: 1.4rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+
+    nav .logo { display: none; } /* save space on very small screens */
+
+    .slide { padding: 72px 1.1rem 48px; }
+
+    h1 { font-size: clamp(1.9rem, 9vw, 2.5rem); }
+    h2 { font-size: clamp(1.3rem, 7vw, 1.8rem); }
+
+    /* Artist cards — single column on phones */
+    .cards-5 { grid-template-columns: 1fr; }
+
+    /* Artist thumb — make taller for visibility */
+    .artist-thumb { aspect-ratio: 16/7; }
+
+    /* Stat numbers — scale down */
+    .stat-number { font-size: 2rem; }
+
+    /* Press cards padding */
+    .press-card { padding: 1.1rem; }
+
+    /* Contact items */
+    .contact-item { font-size: 0.85rem; }
+    .contact-item a { word-break: break-all; }
+
+    /* Highlight boxes */
+    .highlight-box { padding: 1rem; }
+    .highlight-box-accent { padding: 1rem; }
+
+    /* Section label smaller */
+    .section-label { font-size: 9px; }
+
+    .slide-num { font-size: 45px; }
+  }
+
+
+  /* ── SCROLL SNAP (mobile swipe feel) ── */
+  @media (max-width: 768px) {
+    html {
+      scroll-snap-type: y mandatory;
+    }
+    .slide {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
+  }
+
 </style>
 </head>
 <body>
+<!-- ════════════════════════════════════════
+     PASSWORD GATE
+════════════════════════════════════════ -->
+<div id="gate" style="
+  position: fixed; inset: 0; z-index: 9998;
+  background: #080808;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0;
+  font-family: 'DM Sans', sans-serif;
+">
+  <!-- grain -->
+  <div style="
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px;
+  "></div>
+  <!-- glow -->
+  <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,0.07) 0%,transparent 70%);pointer-events:none;"></div>
+
+  <!-- content -->
+  <div style="position:relative;z-index:2;text-align:center;padding:2rem;">
+    <!-- vertical line -->
+    <div style="width:1px;height:60px;background:linear-gradient(180deg,transparent,rgba(201,169,110,0.5));margin:0 auto 2rem;"></div>
+
+    <p style="font-size:9px;font-weight:600;letter-spacing:6px;color:#C9A96E;text-transform:uppercase;margin-bottom:1.5rem;">
+      Trama · O Novo Sempre Vem
+    </p>
+
+    <h1 style="
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:900;
+      color:#F8F6F1;
+      line-height:1;
+      letter-spacing:-1px;
+      margin-bottom:0.4rem;
+    ">O Novo</h1>
+    <h1 style="
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2rem,5vw,3.5rem);
+      font-weight:900;
+      font-style:italic;
+      color:#C9A96E;
+      line-height:1;
+      letter-spacing:-1px;
+      margin-bottom:2.5rem;
+    ">Sempre Vem</h1>
+
+    <div style="position:relative;margin-bottom:0.6rem;">
+      <input
+        id="pwInput"
+        type="password"
+        placeholder="senha de acesso"
+        onkeydown="if(event.key==='Enter')checkPw()"
+        style="
+          width: min(260px, 80vw);
+          background:rgba(201,169,110,0.06);
+          border:1px solid rgba(201,169,110,0.25);
+          border-radius:2px;
+          padding:0.85rem 1.2rem;
+          font-family:'DM Sans',sans-serif;
+          font-size:0.9rem;
+          color:#F8F6F1;
+          outline:none;
+          text-align:center;
+          letter-spacing:3px;
+          transition:border-color 0.2s;
+        "
+        onfocus="this.style.borderColor='#C9A96E'"
+        onblur="this.style.borderColor='rgba(201,169,110,0.25)'"
+      >
+    </div>
+
+    <p id="pwError" style="font-size:10px;color:#c0392b;letter-spacing:1px;height:16px;margin-bottom:0.8rem;opacity:0;transition:opacity 0.2s;">
+      Senha incorreta
+    </p>
+
+    <button
+      onclick="checkPw()"
+      style="
+        background:transparent;
+        border:1px solid rgba(201,169,110,0.35);
+        color:#C9A96E;
+        font-family:'DM Sans',sans-serif;
+        font-size:9px;
+        font-weight:600;
+        letter-spacing:4px;
+        text-transform:uppercase;
+        padding:10px 30px;
+        border-radius:30px;
+        cursor:pointer;
+        transition:all 0.25s;
+      "
+      onmouseover="this.style.background='rgba(201,169,110,0.1)'"
+      onmouseout="this.style.background='transparent'"
+    >
+      Acessar
+    </button>
+
+    <div style="width:1px;height:40px;background:linear-gradient(180deg,rgba(201,169,110,0.4),transparent);margin:2rem auto 0;"></div>
+  </div>
+</div>
+
+<script>
+function checkPw() {
+  const val = document.getElementById('pwInput').value;
+  const err = document.getElementById('pwError');
+  if (val === 'Trama170') {
+    const gate = document.getElementById('gate');
+    gate.style.transition = 'opacity 0.6s';
+    gate.style.opacity = '0';
+    setTimeout(() => gate.style.display = 'none', 600);
+  } else {
+    err.style.opacity = '1';
+    const inp = document.getElementById('pwInput');
+    inp.style.borderColor = '#c0392b';
+    inp.value = '';
+    setTimeout(() => {
+      err.style.opacity = '0';
+      inp.style.borderColor = 'rgba(201,169,110,0.25)';
+    }, 2000);
+  }
+}
+// auto-focus on load
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('pwInput').focus();
+});
+</script>
+
 
 <!-- ─── NAV ─── -->
 <nav>
@@ -458,14 +695,10 @@
     <a href="#s4">4</a><a href="#s5">5</a><a href="#s6">6</a>
     <a href="#s7">7</a><a href="#s8">8</a>
   </div>
-  <div class="nav-right">
-    <span class="nav-hint" id="editHint">modo leitura</span>
-    <button class="edit-toggle" id="editBtn" onclick="toggleEdit()">✏ EDITAR</button>
-    <button class="edit-toggle" style="opacity:0.5;font-size:9px;" onclick="resetAll()">↺ RESET</button>
-  </div>
+  
 </nav>
 
-<div class="edit-toast" id="editToast">MODO EDIÇÃO — clique em qualquer texto para editar</div>
+
 
 <!-- ══════════════════════════════
      SLIDE 1 — CAPA
@@ -838,19 +1071,25 @@
     <div class="contact-item">
   <span class="contact-icon">✉</span>
   <span contenteditable="false">
-    <a href="mailto:verena@trama.com.br">verena@trama.com.br</a>
+    <a href="mailto:jmarcello@trama.com.br">jmarcello@trama.com.br</a>
   </span>
 </div>
-      <div class="contact-item">
+<div class="contact-item">
   <span class="contact-icon">✉</span>
   <span contenteditable="false">
     <a href="mailto:andre@trama.com.br">andre@trama.com.br</a>
   </span>
 </div>
-      <div class="contact-item">
+<div class="contact-item">
   <span class="contact-icon">✉</span>
   <span contenteditable="false">
     <a href="mailto:pcamossa@piraporano.com">pcamossa@piraporano.com</a>
+  </span>
+</div>
+<div class="contact-item">
+  <span class="contact-icon">✉</span>
+  <span contenteditable="false">
+    <a href="mailto:verena@trama.com.br">verena@trama.com.br</a>
   </span>
 </div>
 
@@ -869,119 +1108,4 @@
   </div>
 </section>
 
-<script>
-  const STORAGE_KEY = 'onsv_v1';
-
-  function loadSaved() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const data = JSON.parse(raw);
-      if (data.texts) {
-        Object.entries(data.texts).forEach(([key, html]) => {
-          const el = document.querySelector('[data-sk="' + key + '"]') || document.getElementById(key);
-          if (el) el.innerHTML = html;
-        });
-      }
-      if (data.links) {
-        Object.entries(data.links).forEach(([id, href]) => {
-          const el = document.getElementById(id);
-          if (el) { el.href = href; }
-          const inp = document.querySelector('input[data-lt="' + id + '"]');
-          if (inp) inp.value = href;
-        });
-      }
-    } catch(e) {}
-  }
-
-  function saveAll(silent) {
-    try {
-      const data = { texts: {}, links: {} };
-      document.querySelectorAll('[contenteditable]').forEach(el => {
-        const key = el.getAttribute('data-sk') || el.id;
-        if (key) data.texts[key] = el.innerHTML;
-      });
-      ['cta-promo','cta-promo2','cta-tramachannel','cta-closing',
-       'link-fitti','link-cynthia','link-brazza','link-pedro','link-youn'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) data.links[id] = el.href;
-      });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      if (!silent) showToast('Salvo!');
-    } catch(e) {}
-  }
-
-  let saveTimer;
-  function scheduleAutoSave() { clearTimeout(saveTimer); saveTimer = setTimeout(() => saveAll(true), 1000); }
-
-  function showToast(msg) {
-    const t = document.getElementById('editToast');
-    if (!t) return;
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2000);
-  }
-
-  function resetAll() {
-    if (confirm('Apagar todas as edicoes e voltar ao original?')) {
-      localStorage.removeItem(STORAGE_KEY);
-      location.reload();
-    }
-  }
-
-  const editBtn = document.getElementById('editBtn');
-  const editHint = document.getElementById('editHint');
-  let editing = false;
-
-  function toggleEdit() {
-    editing = !editing;
-    document.body.classList.toggle('edit-mode', editing);
-    document.querySelectorAll('[contenteditable]').forEach(el => {
-      el.contentEditable = editing ? 'true' : 'false';
-    });
-    if (editing) {
-      editBtn.textContent = 'SALVAR';
-      editBtn.classList.add('active');
-      editHint.textContent = 'modo edicao';
-      showToast('Edicao ativa - salvo automaticamente');
-      document.querySelectorAll('[contenteditable=true]').forEach(el => {
-        el.addEventListener('input', scheduleAutoSave);
-      });
-    } else {
-      saveAll(false);
-      editBtn.textContent = 'EDITAR';
-      editBtn.classList.remove('active');
-      editHint.textContent = 'modo leitura';
-    }
-  }
-
-  function updateLink(id, val) {
-    const el = document.getElementById(id);
-    if (el && val.trim()) { el.href = val.trim(); scheduleAutoSave(); }
-  }
-
-  document.querySelectorAll('a[href^=#]').forEach(a => {
-    a.addEventListener('click', e => {
-      const href = a.getAttribute('href');
-      if (href === '#') return;
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' });
-    });
-  });
-
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.slides-nav a');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
-      }
-    });
-  }, { threshold: 0.4 });
-  sections.forEach(s => obs.observe(s));
-
-  document.addEventListener('DOMContentLoaded', loadSaved);
-</script>
-</body>
-</html>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="
